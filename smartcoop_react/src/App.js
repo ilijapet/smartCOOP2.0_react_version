@@ -1,6 +1,6 @@
-import Connect from './Connect'
-import BecomeMember from './BecomeMember';
-import smartCoopLogo from './noun_raspberry_4132882_mala.svg'
+import Connect from './components/Connect'
+import BecomeMember from './components/BecomeMember';
+import smartCoopLogo from './assets/noun_raspberry_4132882_mala.svg'
 
 
 

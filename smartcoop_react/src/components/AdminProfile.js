@@ -1,6 +1,8 @@
 import React from 'react';
 import { useEthers } from '@usedapp/core';
-import { NetworkID } from './housekeeping'
+import { NetworkID } from '../helpers/housekeeping';
+
+
 
 
 const Admin = () => {

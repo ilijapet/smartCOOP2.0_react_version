@@ -1,4 +1,6 @@
+import Web3 from 'web3';
 
+const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
 
 // Chain list
 const NetworkID = {
@@ -19,6 +21,5 @@ const NetworkID = {
   80001: "POLYGON_MUMBAI",
   42161: "ARBITRUM_ONE",
 };
-
 
 export { NetworkID };

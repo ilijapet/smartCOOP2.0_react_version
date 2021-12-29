@@ -1,5 +1,5 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
+import React from 'react';
 
 import { DAppProvider, Config, Kovan } from '@usedapp/core'
 import './App.css';

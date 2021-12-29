@@ -1,0 +1,25 @@
+/smartcoop_react/node_modules
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+
+/smartcoop_react/.pnp
+.pnp.js
+
+# testing
+/smartcoop_react/coverage
+
+# production
+/smartcoop_react/build
+
+# misc
+/smartcoop_react/.DS_Store
+/smartcoop_react/.env.local
+/smartcoop_react/.env.development.local
+/smartcoop_react/.env.test.local
+/smartcoop_react/.env.production.local
+
+/smartcoop_react/npm-debug.log*
+/smartcoop_react/yarn-debug.log*
+/smartcoop_react/yarn-error.log*

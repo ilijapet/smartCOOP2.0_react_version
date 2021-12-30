@@ -29,7 +29,7 @@ const Connect = () => {
       <>
     <div>
       <div>
-        <button id="btn-connect" onClick={() => { activateBrowserWallet(); setShow(!show); selection(0)}}>Connect to wallet </button>
+        <button id="btn-connect" onClick={() => { activateBrowserWallet(); setShow(!show); selection(2)}}>Connect to wallet </button>
       </div>    
       {admin && <Admin />}
       {cooperant && <Cooperant />}

@@ -2,7 +2,7 @@ import React from 'react';
 
 
 
-const becomeMember = () => {
+const BecomeMember = () => {
     
  
 
@@ -15,4 +15,4 @@ const becomeMember = () => {
     )
 };
 
-export default becomeMember;
+export default BecomeMember;

@@ -34,7 +34,7 @@ import {
   sleep,
   raspberryPrice
 }
-  from "./helpers.js";
+  from "./helpers";
 
 
 const reloadUsingLocationHash = () => {

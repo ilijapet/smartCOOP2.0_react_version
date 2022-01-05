@@ -1,6 +1,11 @@
-import Web3 from 'web3';
+import contract from '../contracts/SmartCOOP.json'
 
-const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
+// Contract address
+const SCaddress = "0xfB7A3E46021Be5F70c3A85A7CeB5491AC2338857";
+
+const abi = contract.abi;
+
+
 
 // Chain list
 const NetworkID = {

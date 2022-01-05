@@ -16,7 +16,7 @@ const Connect = () => {
   const { activateBrowserWallet, account, chainId } = useEthers()
  
 
-  const selection = async (value) => {
+  const selection = (value) => {
     if (value === 1) {
       setAdmin(!admin)
     } else if (value === 2) {
@@ -25,6 +25,20 @@ const Connect = () => {
       setBidder(!bidder)
     }    
   }
+
+  const connect = () => {
+
+  }
+
+  const disconnect = () => {
+
+  }
+
+  useEffect(() => {
+    checkWalletIsConnected();
+  }, [])
+
+
   return (
       <>
     <div>

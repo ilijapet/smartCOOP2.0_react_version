@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { shortenAddress, useLookupAddress, useEthers } from '@usedapp/core';
 import Admin from './AdminProfile';
 import Cooperant from './CooperantProfile';
 import Bidder from './BidderProfile';
@@ -11,9 +10,7 @@ const ConnectButton = () => {
   const [admin, setAdmin] = useState(false);
   const [cooperant, setCooperant] = useState(false);
   const [bidder, setBidder] = useState(false);
-  const [currentAccount, setCurrentAccount] = useState(null);
-
-  const { activateBrowserWallet, account, chainId } = useEthers()
+  
 
   const checkWalletIsConnected = async () => {
     const { ethereum } = window;
@@ -30,7 +27,6 @@ const ConnectButton = () => {
     if (accounts.length !== 0) {
       const account = accounts[0];
       console.log("Found an authorized account: ", account);
-      setCurrentAccount(account);
     } else {
       console.log("No authorized account found");
     }
@@ -46,11 +42,23 @@ const ConnectButton = () => {
       setBidder(!bidder)
     }    
   }
+ 
+  
+  const connectWallet = async () => {
+    const { ethereum } = window;
 
-  const connectWallet = () => {
-    activateBrowserWallet();
-    setOnOFF(!OnOFF);
-    selection(2)
+    if (!ethereum) {
+      alert("Please install Metamask!");
+    }
+
+    try {
+      const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+      console.log("Found an account! Address: ", accounts[0]);
+      selection(2)
+      setOnOFF(!OnOFF); 
+    } catch (err) {
+      console.log(err)
+    }  
   }
 
 
@@ -60,7 +68,7 @@ const ConnectButton = () => {
   }
 
   const connect = () => {   
-    return (
+    return (   
       <div>
         <div>
           <button id="btn-connect" onClick={ connectWallet }>Connect to wallet </button>
@@ -87,10 +95,10 @@ const ConnectButton = () => {
   return (
       <>
       <div>
-      {OnOFF ? disconnect() : connect() }   
-      {admin && <Admin />}
-      {cooperant && <Cooperant />}
-      {bidder && <Bidder />}      
+        {OnOFF ? disconnect() : connect() }   
+        {admin && <Admin />}
+        {cooperant && <Cooperant />}
+        {bidder && <Bidder />}      
       </div>
     </>
   )

@@ -1,19 +1,40 @@
 import React, { useState, useEffect } from 'react';
-
-
 import { shortenAddress, useLookupAddress, useEthers } from '@usedapp/core';
-import Discconect from './Disconnect';
 import Admin from './AdminProfile';
 import Cooperant from './CooperantProfile';
 import Bidder from './BidderProfile';
 
 
-const Connect = () => {
-  const [show, setShow] = useState(false);
+const ConnectButton = () => {
+
+  const [OnOFF, setOnOFF] = useState(false);
   const [admin, setAdmin] = useState(false);
   const [cooperant, setCooperant] = useState(false);
   const [bidder, setBidder] = useState(false);
+  const [currentAccount, setCurrentAccount] = useState(null);
+
   const { activateBrowserWallet, account, chainId } = useEthers()
+
+  const checkWalletIsConnected = async () => {
+    const { ethereum } = window;
+
+    if (!ethereum) {
+      console.log("Make sure you have Metamask installed!");
+      return;
+    } else {
+      console.log("Wallet exists! We're ready to go!")
+    }
+
+    const accounts = await ethereum.request({ method: 'eth_accounts' });
+
+    if (accounts.length !== 0) {
+      const account = accounts[0];
+      console.log("Found an authorized account: ", account);
+      setCurrentAccount(account);
+    } else {
+      console.log("No authorized account found");
+    }
+  }
  
 
   const selection = (value) => {
@@ -26,12 +47,36 @@ const Connect = () => {
     }    
   }
 
-  const connect = () => {
+  const connectWallet = () => {
+    activateBrowserWallet();
+    setOnOFF(!OnOFF);
+    selection(2)
+  }
 
+
+  const disconnectWallet = () => {
+    window.location.reload(); 
+    setOnOFF(!OnOFF);
+  }
+
+  const connect = () => {   
+    return (
+      <div>
+        <div>
+          <button id="btn-connect" onClick={ connectWallet }>Connect to wallet </button>
+        </div>   
+      </div>   
+    )     
   }
 
   const disconnect = () => {
-
+    return (
+    <>
+    <div>      
+        <button id="btn-disconnect" onClick={ disconnectWallet }> Discconect wallet </button>        
+    </div>
+    </>
+    )
   }
 
   useEffect(() => {
@@ -41,20 +86,18 @@ const Connect = () => {
 
   return (
       <>
-    <div>
       <div>
-        <button id="btn-connect" onClick={() => { activateBrowserWallet(); setShow(!show); selection(2)}}>Connect to wallet </button>
-      </div>    
+      {OnOFF ? disconnect() : connect() }   
       {admin && <Admin />}
       {cooperant && <Cooperant />}
-      {bidder && <Bidder />}
-      {show && <Discconect />}
-    </div>
+      {bidder && <Bidder />}      
+      </div>
     </>
   )
+
 }
 
 
 
-export default Connect;
+export default ConnectButton;
 

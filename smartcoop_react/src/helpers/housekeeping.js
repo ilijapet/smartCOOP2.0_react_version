@@ -1,10 +1,15 @@
+import Web3 from 'web3';
+
 import contract from '../contracts/SmartCOOP.json'
 
 // Contract address
 const SCaddress = "0xfB7A3E46021Be5F70c3A85A7CeB5491AC2338857";
 
-const abi = contract.abi;
+// Contracts abi
+const ABI = contract.abi;
 
+const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
+const coopContract = new web3.eth.Contract(ABI, SCaddress);
 
 
 // Chain list
@@ -27,4 +32,8 @@ const NetworkID = {
   42161: "ARBITRUM_ONE",
 };
 
-export { NetworkID };
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+
+export { NetworkID, coopContract, sleep };

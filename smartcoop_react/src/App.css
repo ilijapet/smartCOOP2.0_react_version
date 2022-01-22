@@ -1,8 +1,16 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Basic&family=Bayon&family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500&family=Italianno&family=Julius+Sans+One&family=Merriweather:ital,wght@1,300&family=Monoton&family=Nanum+Myeongjo:wght@700;800&family=Nunito+Sans:ital,wght@0,300;1,300&family=Ovo&family=Paytone+One&family=Rampart+One&family=Red+Hat+Display&family=Roboto&family=Rubik+Beastly&family=Sarabun:wght@300&family=Sora:wght@300&family=Syncopate&display=swap');
 
+
+
+:root {
+  --main-background: linear-gradient(to right, #a01a58, #892b64, #723c70,#5c4d7d, #455e89, #2e6f95, #1780a1) 0% 0% / cover fixed;
+  --main-head-bacground: #1780a1, #0091ad,#1780a1, #2e6f95, #455e89, #5c4d7d, #723c70, #892b64, #a01a58, #892b64, #723c70,#5c4d7d, #455e89, #2e6f95, #2e6f95, #1780a1, #0091ad,#1780a1; 
+  --main-container-profile: #a01a58, #892b64, #723c70,#5c4d7d, #455e89, #2e6f95, #1780a1;  
+}
+
 body {
-  background: linear-gradient(to right,#a01a58, #892b64, #723c70,#5c4d7d, #455e89, #2e6f95, #1780a1) 0% 0% / cover fixed; 
+  background: var(--main-background); 
   color: rgb(255, 255, 255);    
   overflow-x: hidden;
 } 
@@ -21,7 +29,7 @@ img {
 
 h1 { 
   text-align: center;
-  background-image: linear-gradient(to right,#1780a1, #0091ad,#1780a1, #2e6f95, #455e89, #5c4d7d, #723c70, #892b64, #a01a58, #892b64, #723c70,#5c4d7d, #455e89, #2e6f95, #2e6f95, #1780a1, #0091ad,#1780a1 ); 
+  background-image: linear-gradient(to right, var(--main-head-bacground)); 
   background-size: 400%;
   font-size: 55px;
   -webkit-background-clip: text;
@@ -214,7 +222,7 @@ h1 {
 
 .container {
   border: none;
-  background: linear-gradient(to right,#a01a58, #892b64, #723c70,#5c4d7d, #455e89, #2e6f95, #1780a1);
+  background: linear-gradient(to right, var(--main-container-profile));
   border-radius: 25px;
   padding: -20px 10px; 
   margin: 5rem 5rem;

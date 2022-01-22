@@ -1,11 +1,10 @@
-import { useEthers } from '@usedapp/core';
 import { NetworkID } from '../helpers/housekeeping';
-
-
-
+import { useEthers } from '@usedapp/core'
 
 const Admin = () => {
-    const { account, chainId } = useEthers()
+    const { ethereum } = window;    
+    const account = ethereum.selectedAddress;
+    const { chainId } = useEthers()    
 
     return (
         <>

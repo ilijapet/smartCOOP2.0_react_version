@@ -1,4 +1,4 @@
-import Connect from "./components/Connect";
+import EntryPoint from "./components/EntryPoint";
 import BecomeMember from "./components/BecomeMember";
 import smartCoopLogo from "./assets/noun_raspberry_4132882_mala.svg";
 
@@ -12,7 +12,7 @@ function App() {
       <h1>smart contract based agricultural cooperative</h1>
       <div>
         <BecomeMember />
-        <Connect />
+        <EntryPoint />
       </div>
     </>
   );

@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+
 import { NetworkID } from "../helpers/housekeeping";
 import { useEthers } from "@usedapp/core";
 
@@ -7,6 +9,7 @@ import { useEthers } from "@usedapp/core";
  * @returns None
  */
 const Bidder = () => {
+  const [confirmation, setConfirmation] = useState();
   const { ethereum } = window;
   const account = ethereum.selectedAddress;
   const { chainId } = useEthers();
@@ -23,11 +26,20 @@ const Bidder = () => {
           <label htmlFor="bought_kilograms" id="bought_label">
             I want to buy
           </label>
-          <input type="number" id="bought_kilograms" placeholder="kg" />
-          <button type="submit" id="buy_raspberry">
+          <input
+            type="number"
+            id="bought_kilograms"
+            name="bought_kilograms"
+            placeholder="kg"
+          />
+          <button
+            type="submit"
+            id="buy_raspberry"
+            onClick={() => setConfirmation("You bought fruits from SmartCOOP")}
+          >
             Buy raspberry
           </button>
-          <p id="boughtFruitsFromWarhouse"></p>
+          <p> {confirmation} </p>
         </div>
       </section>
     </>

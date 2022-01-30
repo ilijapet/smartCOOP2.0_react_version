@@ -21,8 +21,7 @@ const Bidder = () => {
         <p> Total bought from SmartCOOP </p>
         <div className="trade">
           <label htmlFor="bought_kilograms" id="bought_label">
-            {" "}
-            I want to buy{" "}
+            I want to buy
           </label>
           <input type="number" id="bought_kilograms" placeholder="kg" />
           <button type="submit" id="buy_raspberry">

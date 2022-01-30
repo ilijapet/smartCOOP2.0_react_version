@@ -88,7 +88,6 @@ const ConnectButton = () => {
       <div>
         <div>
           <button id="btn-connect" onClick={connectWallet}>
-            {/* Connect wallet{" "} */}
             Connect wallet
           </button>
         </div>
@@ -100,7 +99,6 @@ const ConnectButton = () => {
     return (
       <div>
         <button id="btn-disconnect" onClick={disconnectWallet}>
-          {/* Discconect wallet{" "} */}
           Discconect wallet
         </button>
       </div>

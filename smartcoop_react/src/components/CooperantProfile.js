@@ -19,8 +19,7 @@ const User = () => {
         <p> COOP tokens on acount: </p>
         <p> Raspberies in SmartCOOP warehouse </p>
         <label htmlFor="deposit_kg" id="deposit_kg_label">
-          {" "}
-          I want to deposit{" "}
+          I want to deposit
         </label>
         <input type="number" id="deposit_kg" placeholder="kg"></input>
         <button type="submit" id="deposit_raspberry">

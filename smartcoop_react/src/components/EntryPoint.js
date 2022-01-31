@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 
+import Connect from "./Connect";
+import Disconnect from "./Disconnect";
 import Admin from "./AdminProfile";
 import Cooperant from "./CooperantProfile";
 import Bidder from "./BidderProfile";
-import { coopContract } from "../helpers/housekeeping";
 
 const EntryPoint = () => {
   const [OnOFF, setOnOFF] = useState(false);
@@ -29,7 +30,6 @@ const EntryPoint = () => {
     } else {
       console.log("No authorized account found");
     }
-    console.log(ethereum.chainId);
 
     if (ethereum.chainId !== "0x2a") {
       alert(
@@ -37,61 +37,20 @@ const EntryPoint = () => {
       );
     }
   };
-
-  const selection = async (props) => {
-    let user_balance = await coopContract.methods
-      .getUserAccountBalance(props)
-      .call();
-    if (user_balance[0] !== "0") {
-      setCooperant(!cooperant);
-    } else if (props === "0x273f4FCa831A7e154f8f979e1B06F4491Eb508B6") {
-      setAdmin(!admin);
-    } else {
-      setBidder(!bidder);
-    }
+  const funSetOnOFF = (props) => {
+    setOnOFF(props);
   };
 
-  const connectWallet = async () => {
-    const { ethereum } = window;
-
-    try {
-      const accounts = await ethereum.request({
-        method: "eth_requestAccounts",
-      });
-      const account = accounts[0];
-      console.log("Found an account! Address: ", account);
-      selection(account);
-      setOnOFF(!OnOFF);
-    } catch (err) {
-      console.log(err);
-    }
+  const funSetCooperant = (props) => {
+    setCooperant(props);
   };
 
-  const disconnectWallet = () => {
-    window.location.reload();
-    setOnOFF(!OnOFF);
+  const funSetAdmin = (props) => {
+    setAdmin(props);
   };
 
-  const connect = () => {
-    return (
-      <div>
-        <div>
-          <button id="btn-connect" onClick={connectWallet}>
-            Connect wallet
-          </button>
-        </div>
-      </div>
-    );
-  };
-
-  const disconnect = () => {
-    return (
-      <div>
-        <button id="btn-disconnect" onClick={disconnectWallet}>
-          Discconect wallet
-        </button>
-      </div>
-    );
+  const funSetBidder = (props) => {
+    setBidder(props);
   };
 
   useEffect(() => {
@@ -101,7 +60,20 @@ const EntryPoint = () => {
   return (
     <>
       <div>
-        {OnOFF ? disconnect() : connect()}
+        {OnOFF ? (
+          <Disconnect funSetOnOFF={funSetOnOFF} OnOFF={OnOFF} />
+        ) : (
+          <Connect
+            funSetOnOFF={funSetOnOFF}
+            OnOFF={OnOFF}
+            funSetCooperant={funSetCooperant}
+            cooperant={cooperant}
+            funSetAdmin={funSetAdmin}
+            admin={admin}
+            funSetBidder={funSetBidder}
+            bidder={bidder}
+          />
+        )}
         {admin && <Admin />}
         {cooperant && <Cooperant />}
         {bidder && <Bidder />}

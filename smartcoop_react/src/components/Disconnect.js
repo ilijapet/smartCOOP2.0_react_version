@@ -1,12 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Disconnect = () => {
-
-    const []
-
+const Disconnect = ({ funSetOnOFF, OnOFF }) => {
   const disconnectWallet = () => {
     window.location.reload();
-    setOnOFF(!OnOFF);
+    funSetOnOFF(!OnOFF);
   };
 
   return (

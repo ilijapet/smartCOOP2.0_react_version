@@ -1,16 +1,15 @@
-import Web3 from 'web3';
+import Web3 from "web3";
 
-import contract from '../contracts/SmartCOOP.json'
+import contract from "../contracts/SmartCOOP.json";
 
 // Contract address
-const SCaddress = "0xfB7A3E46021Be5F70c3A85A7CeB5491AC2338857";
+const SCaddress = "0x2a52F31CE495E910A31e9FA98aeE159CeEDa85F0";
 
 // Contracts abi
 const ABI = contract.abi;
 
 const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
 const coopContract = new web3.eth.Contract(ABI, SCaddress);
-
 
 // Chain list
 const NetworkID = {
@@ -33,7 +32,43 @@ const NetworkID = {
 };
 
 const sleep = (milliseconds) => {
-  return new Promise(resolve => setTimeout(resolve, milliseconds))
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+};
+
+// Helper promise
+function MakeQuerablePromise(promise) {
+  // Don't modify any promise that has been already modified.
+  if (promise.isFulfilled) return promise;
+
+  // Set initial state
+  var isPending = true;
+  var isRejected = false;
+  var isFulfilled = false;
+
+  // Observe the promise, saving the fulfillment in a closure scope.
+  var result = promise.then(
+    function (v) {
+      isFulfilled = true;
+      isPending = false;
+      return v;
+    },
+    function (e) {
+      isRejected = true;
+      isPending = false;
+      throw e;
+    }
+  );
+
+  result.isFulfilled = function () {
+    return isFulfilled;
+  };
+  result.isPending = function () {
+    return isPending;
+  };
+  result.isRejected = function () {
+    return isRejected;
+  };
+  return result;
 }
 
-export { NetworkID, coopContract, sleep };
+export { NetworkID, coopContract, sleep, MakeQuerablePromise };

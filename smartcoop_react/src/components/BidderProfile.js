@@ -1,6 +1,11 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 
-import { NetworkID } from "../helpers/housekeeping";
+import {
+  NetworkID,
+  coopContract,
+  MakeQuerablePromise,
+  sleep,
+} from "../helpers/housekeeping";
 import { useEthers } from "@usedapp/core";
 
 /**
@@ -9,10 +14,81 @@ import { useEthers } from "@usedapp/core";
  * @returns None
  */
 const Bidder = () => {
-  const [confirmation, setConfirmation] = useState();
+  const [confirmation, setConfirmation] = useState("Buy raspberry");
+  const [inputData, setInputData] = useState("");
+  const [newWidth, setNewWidth] = useState("0%");
+  const [account, setAccount] = useState();
+  const [bidderBalance, setBidderBalance] = useState();
+  const [bidderPayed, setBidderPayed] = useState();
+
   const { ethereum } = window;
-  const account = ethereum.selectedAddress;
   const { chainId } = useEthers();
+  const raspberryPrice = 9;
+
+  const getAccount = async () => {
+    const accounts = await ethereum.request({
+      method: "eth_requestAccounts",
+    });
+    const accountOne = accounts[0];
+    setAccount(accountOne);
+  };
+
+  const getBidderBalance = async () => {
+    const accounts = await ethereum.request({
+      method: "eth_requestAccounts",
+    });
+    const bidderAccountBalance = await coopContract.methods
+      .getBidderAccountBalance(accounts[0])
+      .call();
+    setBidderBalance(bidderAccountBalance[1]);
+    setBidderPayed(bidderAccountBalance[0]);
+  };
+
+  const progressButton = async (props) => {
+    var myTrans = MakeQuerablePromise(props);
+    let x = 10;
+    while (myTrans.isFulfilled() === false && x <= 100) {
+      myTrans = MakeQuerablePromise(props);
+      setNewWidth(x.toString() + "%");
+      await sleep(1000);
+      x += 5;
+    }
+    setNewWidth("100%");
+  };
+
+  // Buy your raspberry
+  const buyRaspberry = async (props) => {
+    const accounts = await ethereum.request({ method: "eth_accounts" });
+    const account = accounts[0];
+    let inUSD = props * raspberryPrice;
+    var inWei = await coopContract.methods.ethUSD(inUSD).call();
+    var inWeiString = String(inWei);
+    var done = coopContract.methods
+      .bid(props)
+      .send(
+        { from: account, value: inWeiString, gas: 10000000 },
+        async function (error, transactionHash) {
+          if (error) {
+            console.log(error);
+          } else {
+            await progressButton(done);
+            setInputData("");
+            setNewWidth("0%");
+            setConfirmation("Successful trade");
+            await sleep(3000);
+            setConfirmation("Buy raspberry");
+          }
+        }
+      );
+  };
+
+  useEffect(() => {
+    getAccount();
+  }, []);
+
+  useEffect(() => {
+    getBidderBalance();
+  });
 
   return (
     <>
@@ -20,8 +96,8 @@ const Bidder = () => {
         <p style={{ fontSize: 20 }}> Bidders dashboard </p>
         <p> Currently connected to {NetworkID[chainId]} network </p>
         {<p> Connected account: {account}</p>}
-        <p> Total payed in USD: </p>
-        <p> Total bought from SmartCOOP </p>
+        <p> Total payed in USD: {bidderPayed}</p>
+        <p> Total bought from SmartCOOP {bidderBalance} </p>
         <div className="trade">
           <label htmlFor="bought_kilograms" id="bought_label">
             I want to buy
@@ -31,15 +107,20 @@ const Bidder = () => {
             id="bought_kilograms"
             name="bought_kilograms"
             placeholder="kg"
+            value={inputData}
+            onChange={(e) => setInputData(e.target.value)}
           />
           <button
             type="submit"
             id="buy_raspberry"
-            onClick={() => setConfirmation("You bought fruits from SmartCOOP")}
+            onClick={() => buyRaspberry(inputData)}
           >
-            Buy raspberry
+            <div
+              className="button__progress_buy_raspberry"
+              style={{ width: newWidth }}
+            ></div>
+            {confirmation}
           </button>
-          <p> {confirmation} </p>
         </div>
       </section>
     </>

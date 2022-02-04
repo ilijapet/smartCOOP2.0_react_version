@@ -218,7 +218,7 @@ contract SmartCOOP is Pausable, Ownable {
 
     /// @notice This function is used to provide overview of user SmartCOOP account
     /// @param _user We pass user address as argument
-    /// @return If executed sucesfully function will return 3 values: 1) how much user pay SmartCOOP fee; 2) Total amount of kg user currenly have in
+    /// @return If executed sucesfully function will return 3 values: 1) how much user pay SmartCOOP fee; 2) Total //..//// amount of kg user currenly have in
     /// SmartCOOP warehouse; 3) Total amount of COOPTokens he/she receive
     function getUserAccountBalance(address _user)
         public

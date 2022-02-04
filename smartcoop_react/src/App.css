@@ -120,7 +120,32 @@ h1 {
 .button__progress_deposit_raspberry {
   position: absolute;
   height: 100%;
-  width: 30%;
+  width: 0%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.2);
+  transition: width 0.3s;
+  border-radius: 30px;
+}
+
+#addTokenStyle {
+  border: none;
+  background-color: #003566;
+  color: blacks;
+  /* background-color: red; */
+  font-size: 14px;
+  padding: 32x 16px;
+  position: relative;
+  left: 750px;
+  bottom: 150px;
+  border-radius: 7px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.button__progress_buy_raspberry {
+  position: absolute;
+  height: 100%;
+  width: 0%;
   top: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.2);

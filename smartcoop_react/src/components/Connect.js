@@ -1,4 +1,3 @@
-import react from "react";
 import { coopContract } from "../helpers/housekeeping";
 
 const Connect = ({
@@ -15,10 +14,9 @@ const Connect = ({
     let user_balance = await coopContract.methods
       .getUserAccountBalance(props)
       .call();
-
     if (user_balance[0] !== "0") {
       funSetCooperant(!cooperant);
-    } else if (props === "0x273f4FCa831A7e154f8f979e1B06F4491Eb508B6") {
+    } else if (props === "0x273f4fca831a7e154f8f979e1b06f4491eb508b6") {
       funSetAdmin(!admin);
     } else {
       funSetBidder(!bidder);
@@ -29,12 +27,11 @@ const Connect = ({
     const { ethereum } = window;
 
     try {
-      const accounts = await ethereum.request({
+      const account = await ethereum.request({
         method: "eth_requestAccounts",
       });
-      const account = accounts[0];
-      console.log("Found an account! Address: ", account);
-      selection(account);
+      console.log("Found an account! Address: ", account[0]);
+      selection(account[0]);
       funSetOnOFF(!OnOFF);
     } catch (err) {
       console.log(err);

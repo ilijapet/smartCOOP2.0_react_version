@@ -2,8 +2,15 @@ import Web3 from "web3";
 
 import contract from "../contracts/SmartCOOP.json";
 
+const raspberryPrice = 9;
+const tokenAddress = "0xcdc51d509F58c442124d23b370565928d39eFa74";
+const tokenSymbol = "COOP";
+const tokenDecimals = 18;
+const tokenImage =
+  "https://ilijapet.github.io/photos/noun_raspberry_4132882_mala.svg";
+
 // Contract address
-const SCaddress = "0x2a52F31CE495E910A31e9FA98aeE159CeEDa85F0";
+const SCaddress = "0x407820928f566c76cCE7F88E98a3a6749484231E";
 
 // Contracts abi
 const ABI = contract.abi;
@@ -71,4 +78,13 @@ function MakeQuerablePromise(promise) {
   return result;
 }
 
-export { NetworkID, coopContract, sleep, MakeQuerablePromise };
+export {
+  NetworkID,
+  coopContract,
+  tokenAddress,
+  tokenSymbol,
+  tokenDecimals,
+  tokenImage,
+  sleep,
+  MakeQuerablePromise,
+};

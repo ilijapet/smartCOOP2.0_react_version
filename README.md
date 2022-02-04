@@ -43,12 +43,6 @@ https://ilijapet.github.io/smartCOOP/client/
 
 https://www.youtube.com/watch?v=Y9qr7ybG-lA
 
-<br>
-
-## My public ETH address for NFT certification
-
-<hr>
-0x407820928f566c76cCE7F88E98a3a6749484231E
 
 <br>
 

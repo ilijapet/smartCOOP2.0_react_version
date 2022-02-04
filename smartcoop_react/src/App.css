@@ -157,9 +157,10 @@ h1 {
   border: none;
   background-color: #003566;
   position: relative;
+  margin: 10px;
   padding: 15px 21px;
   top: -30px;
-  left: 1150px;
+  left: 900px;
   border-radius: 30px;
   font-size: 18px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

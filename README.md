@@ -6,15 +6,26 @@
 
 <hr>
 
-- build: result of compiling process (contracts ABI`s)
+## Brownie develeopment folder
 
-- client: front-end files
+- build: result of compiling process (contracts ABI`s)
 
 - contracts: smart contracts
 
 - scripts: deploy script and supporting functions
 
 - tests: fixtures and test file
+
+## React front-end folder
+
+- public
+
+- src
+
+  - components
+  - assets
+  - contracts (abi)
+  - helpers
 
 <br>
 
@@ -37,7 +48,7 @@ https://www.youtube.com/watch?v=Y9qr7ybG-lA
 ## My public ETH address for NFT certification
 
 <hr>
-0xBba4256C9dba48281B71610F30E18c4DeD73B2F3
+0x407820928f566c76cCE7F88E98a3a6749484231E
 
 <br>
 

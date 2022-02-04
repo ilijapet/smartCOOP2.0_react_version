@@ -78,6 +78,18 @@ function MakeQuerablePromise(promise) {
   return result;
 }
 
+const progressButton = async (parOne, parTwo) => {
+  var myTrans = MakeQuerablePromise(parOne);
+  let x = 10;
+  while (myTrans.isFulfilled() === false && x <= 100) {
+    myTrans = MakeQuerablePromise(parOne);
+    parTwo(x.toString() + "%");
+    await sleep(1000);
+    x += 5;
+  }
+  parTwo("100%");
+};
+
 export {
   NetworkID,
   coopContract,
@@ -87,4 +99,5 @@ export {
   tokenImage,
   sleep,
   MakeQuerablePromise,
+  progressButton,
 };

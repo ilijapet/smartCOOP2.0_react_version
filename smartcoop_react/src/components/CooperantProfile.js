@@ -5,6 +5,7 @@ import {
   coopContract,
   sleep,
   MakeQuerablePromise,
+  progressButton,
 } from "../helpers/housekeeping";
 import { useEthers } from "@usedapp/core";
 import AddToken from "./AddToken";
@@ -45,43 +46,25 @@ const User = () => {
     setTotalRaspberies(cooperantsAccountsBalance[1]);
   };
 
-  const progressButton = async (props) => {
-    var myTrans = MakeQuerablePromise(props);
-    let x = 10;
-    while (myTrans.isFulfilled() === false) {
-      myTrans = MakeQuerablePromise(props);
-      setNewWidth(x.toString() + "%");
-      await sleep(1000);
-      x += 5;
-    }
-    setNewWidth("100%");
-  };
-
   // Deposit your raspberry
   const depositRaspberry = async (props) => {
     const accounts = await ethereum.request({ method: "eth_accounts" });
     const account = accounts[0];
 
-    let cooperants = await coopContract.methods
-      .getUserAccountBalance(account)
-      .call();
-    if (cooperants[0] !== "0") {
-      var done = coopContract.methods
-        .depositFruitsToCOOP(props)
-        .send({ from: account }, async function (error, transactionHash) {
-          if (error) {
-            console.log(error);
-          } else {
-            await progressButton(done);
-            setButtonText("Everything whent well");
-            setInputData("");
-            await sleep(4000);
-            setButtonText("Deposit your raspberry");
-            setNewWidth("0%");
-          }
-        });
-    } else {
-    }
+    var done = coopContract.methods
+      .depositFruitsToCOOP(props)
+      .send({ from: account }, async function (error, transactionHash) {
+        if (error) {
+          console.log(error);
+        } else {
+          await progressButton(done, setNewWidth);
+          setButtonText("Everything whent well");
+          setInputData("");
+          await sleep(4000);
+          setButtonText("Deposit your raspberry");
+          setNewWidth("0%");
+        }
+      });
   };
 
   const addCoopTookenToMM = () => {

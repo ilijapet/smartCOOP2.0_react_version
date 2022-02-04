@@ -5,6 +5,7 @@ import {
   coopContract,
   MakeQuerablePromise,
   sleep,
+  progressButton,
 } from "../helpers/housekeeping";
 import { useEthers } from "@usedapp/core";
 
@@ -44,18 +45,6 @@ const Bidder = () => {
     setBidderPayed(bidderAccountBalance[0]);
   };
 
-  const progressButton = async (props) => {
-    var myTrans = MakeQuerablePromise(props);
-    let x = 10;
-    while (myTrans.isFulfilled() === false && x <= 100) {
-      myTrans = MakeQuerablePromise(props);
-      setNewWidth(x.toString() + "%");
-      await sleep(1000);
-      x += 5;
-    }
-    setNewWidth("100%");
-  };
-
   // Buy your raspberry
   const buyRaspberry = async (props) => {
     const accounts = await ethereum.request({ method: "eth_accounts" });
@@ -71,7 +60,7 @@ const Bidder = () => {
           if (error) {
             console.log(error);
           } else {
-            await progressButton(done);
+            await progressButton(done, setNewWidth);
             setInputData("");
             setNewWidth("0%");
             setConfirmation("Successful trade");

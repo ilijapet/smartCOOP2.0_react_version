@@ -3,14 +3,14 @@ import Web3 from "web3";
 import contract from "../contracts/SmartCOOP.json";
 
 const raspberryPrice = 9;
-const tokenAddress = "0xcdc51d509F58c442124d23b370565928d39eFa74";
+const tokenAddress = "0x76932e71f17451e7760ffb9b02d991d73355024C";
 const tokenSymbol = "COOP";
 const tokenDecimals = 18;
 const tokenImage =
   "https://ilijapet.github.io/photos/noun_raspberry_4132882_mala.svg";
 
 // Contract address
-const SCaddress = "0x407820928f566c76cCE7F88E98a3a6749484231E";
+const SCaddress = "0x614e8821C0Dc17F16Fdc89C237d5fBd037A041e1";
 
 // Contracts abi
 const ABI = contract.abi;

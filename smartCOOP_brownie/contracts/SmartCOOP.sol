@@ -8,13 +8,13 @@
 
 pragma solidity 0.8.0;
 
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
 
 contract SmartCOOP is Pausable, Ownable {
-    ERC20 private coopToken;
+    IERC20 private coopToken;
     AggregatorV3Interface private priceFeed;
 
     uint256 private constant RASPBERRY_PRICE = 9;
@@ -47,7 +47,7 @@ contract SmartCOOP is Pausable, Ownable {
      * operational in Kovan testnet enviroment as well as in local ganache dev enviroment with Chainlink price feed.
      */
     constructor(address contractAddress, address chainlinkPrice) {
-        coopToken = ERC20(contractAddress);
+        coopToken = IERC20(contractAddress);
         priceFeed = AggregatorV3Interface(chainlinkPrice);
     }
 

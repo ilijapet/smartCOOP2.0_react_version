@@ -1,5 +1,5 @@
 <p align="center">
-<img src =".\smartCOOP_brownie\pictures\red-2650342_1920.jpg" width="300")
+<img src =".\smartcoop_react\src\assets\red-2650342_1920.jpg" width="300")
 </p>
 
 ## Directory structure
@@ -43,7 +43,6 @@ https://ilijapet.github.io/smartCOOP/client/
 
 https://www.youtube.com/watch?v=Y9qr7ybG-lA
 
-
 <br>
 
 <hr>
@@ -79,7 +78,7 @@ The project assumes that Agricultural Cooperative has:
 ### 4) Graphical representation of user workflow (cooperant/small producer and buyer) and program logic
 
 <p align="center">
-<img src =".\pictures\Logic@2x.png" width="1000" height="600")
+<img src =".\smartcoop_react\src\assets\Logic@2x.png" width="1000" height="600")
 </p>
 
 <br>

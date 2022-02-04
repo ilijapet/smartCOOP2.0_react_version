@@ -23,3 +23,12 @@
 /smartcoop_react/npm-debug.log*
 /smartcoop_react/yarn-debug.log*
 /smartcoop_react/yarn-error.log*
+
+.gitignore
+smartCOOP_brownie/__pycache__
+smartCOOP_brownie/.history
+smartCOOP_brownie/.hypothesis/
+smartCOOP_brownie/build/
+smartCOOP_brownie/reports/
+smartCOOP_brownie/.env
+smartCOOP_brownie/node_modules/

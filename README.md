@@ -33,7 +33,7 @@
 
 Please click on link below
 
-https://ilijapet.github.io/smartCOOP/client/
+https://dreamy-bhabha-ef3493.netlify.app/
 
 <br>
 

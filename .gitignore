@@ -10,9 +10,6 @@
 # testing
 /smartcoop_react/coverage
 
-# production
-/smartcoop_react/build
-
 # misc
 /smartcoop_react/.DS_Store
 /smartcoop_react/.env.local

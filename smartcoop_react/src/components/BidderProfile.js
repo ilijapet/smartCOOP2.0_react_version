@@ -11,7 +11,7 @@ import { useEthers } from "@usedapp/core";
 
 /**
  * This function is responsible for displaying the bidder dashboard.
- * It displays the current connected account and network, the total payed in USD, the total bought from SmartCOOP.
+ * It displays the current connected account and network, the total payed in USD, the total bought from SmartCOOP and optition to buy frutis from SmartCOOP.
  * @returns None
  */
 const Bidder = () => {

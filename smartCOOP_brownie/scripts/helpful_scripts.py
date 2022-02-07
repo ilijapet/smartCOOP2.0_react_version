@@ -36,7 +36,7 @@ def get_account():
 
 
 def get_contract(contract_name):
-    """If you want to use this function, go to the brownie config and add a new entry for
+    """To use this function, go to the brownie config and add a new entry for
     the contract that you want to be able to 'get'. Then add an entry in the in the variable 'contract_to_mock'.
     You'll see examples like the 'link_token'.
         This script will then either:
@@ -75,7 +75,7 @@ def get_contract(contract_name):
 
 def deploy_mocks(decimals=DECIMALS, initial_value=INITIAL_VALUE):
     """
-    Use this script if you want to deploy mocks to a testnet
+    Use thisif we want to deploy mocks to a testnet
     """
     print(f"The active network is {network.show_active()}")
     print("Deploying Mocks...")

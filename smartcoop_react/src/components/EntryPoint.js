@@ -6,6 +6,11 @@ import Admin from "./AdminProfile";
 import Cooperant from "./CooperantProfile";
 import Bidder from "./BidderProfile";
 
+/**
+ * This function is the entry point of the DApp. It renders the Connect component if the user is not
+ * connected to the DApp. Otherwise, it renders the Disconnect component. Also this function redner user, bidder or administraor profile based on eth address connected.
+ * @returns The component that is being returned is the entry point of the application.
+ */
 const EntryPoint = () => {
   const [OnOFF, setOnOFF] = useState(false);
   const [admin, setAdmin] = useState(false);

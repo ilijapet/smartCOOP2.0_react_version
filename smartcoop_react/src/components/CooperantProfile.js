@@ -11,8 +11,8 @@ import { useEthers } from "@usedapp/core";
 import AddToken from "./AddToken";
 
 /**
- * This function is responsible for rendering the user dashboard.
- * @returns The component
+ * This function is responsible for rendering the user dashboard with account connected, smart token recived and button for making fruit deposit to smart coop warehouse.
+ * @returns The user component
  */
 const User = () => {
   const [inputData, setInputData] = useState("");

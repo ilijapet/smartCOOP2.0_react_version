@@ -1,5 +1,9 @@
 import { coopContract } from "../helpers/housekeeping";
 
+/**
+ * It connects the wallet to the DApp.
+ * @returns A button that will connect the wallet to the dapp.
+ */
 const Connect = ({
   funSetOnOFF,
   OnOFF,

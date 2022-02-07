@@ -5,6 +5,10 @@ import {
   tokenImage,
 } from "../helpers/housekeeping";
 
+/**
+ * It calls the `wallet_watchAsset` method on the ethereum object.
+ * @returns A button that calls the addTokenFun function.
+ */
 const AddToken = () => {
   const addTokenFun = async () => {
     const { ethereum } = window;

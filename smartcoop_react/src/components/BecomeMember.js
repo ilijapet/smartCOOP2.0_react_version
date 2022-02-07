@@ -5,6 +5,10 @@ import {
   MakeQuerablePromise,
 } from "../helpers/housekeeping";
 
+/**
+ * It creates a button that will provide user option to become a SmartCOOP member.
+ * @returns A button with a progress bar.
+ */
 const BecomeMember = () => {
   const [messageButton, setMessageButton] = useState(
     "Become a SmartCOOP member"

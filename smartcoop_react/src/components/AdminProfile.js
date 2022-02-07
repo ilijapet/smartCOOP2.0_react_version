@@ -9,6 +9,10 @@ import {
 } from "../helpers/housekeeping";
 import { useEthers } from "@usedapp/core";
 
+/**
+ * A simple admin dashboard that allows you to withdraw all the funds from the smart contract to pause/unpause diifrent fucntions from contract.
+ * @returns The Admin component is being returned.
+ */
 const Admin = () => {
   const { ethereum } = window;
   const [buttonText, setButtonText] = useState("Withdraw all funds");

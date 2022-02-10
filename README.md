@@ -262,6 +262,8 @@ Python
 
 JavaScript
 
+React
+
 HTML/CSS
 
 Brownie

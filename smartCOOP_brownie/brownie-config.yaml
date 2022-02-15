@@ -67,3 +67,11 @@ networks:
     eth_usd_price_feed: "0xF9680D99D6C9589e2a93a78A04A279e509205945"
 wallets:
   from_key: ${PRIVATE_KEY}
+project_structure:
+  build: build
+  build: ../smartcoop_react/src/contracts
+  contracts: contracts
+  interfaces: interfaces
+  reports: reports
+  scripts: scripts
+  tests: tests

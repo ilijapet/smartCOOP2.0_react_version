@@ -66,58 +66,38 @@ contract SmartCOOP is Pausable, Ownable {
     event WithdrawConfirmation(address receiver, uint256 amount);
     event COOPTokenTransferConfirmation(address receiver, uint256 amount);
 
-    // Modifiers
+    // Functions
 
-    ///@dev control that function can be called only by SmartCOOP members (depositFruitsToCOOP function)
-    modifier onlyMembers() {
-        require(
-            s_cooperants[msg.sender].feePayed != 0,
-            "Please become SmartCOOP member"
-        );
-        _;
-    }
-
-    ///@dev Controling that function can be called only by EOA which is not already registered as SmartCOOP members (becomeCoopMember function)
-    modifier onlyNewMembers() {
+    /// @notice Allowing new EOA to become SmartCOOP member
+    /// @dev Controlling the fee paid when we call becomeCoopMember function is more then 1000 wei
+    /// @dev Controling that function can be called only by EOA which is not already registered as SmartCOOP members
+    /// (becomeCoopMember function)
+    /// @return If execution was successful function will return true
+    function becomeCoopMember() public payable whenNotPaused returns (bool) {
         require(
             s_cooperants[msg.sender].feePayed == 0,
             "You already pay mebership fee"
         );
-        _;
-    }
-
-    ///@dev Controlling the fee paid when we call becomeCoopMember function is more then 1000 wei
-    modifier minimumFee() {
         require(msg.value >= 1000, "Yearly fee is minimum 1000 wei");
-        _;
-    }
 
-    // Functions
-
-    /// @notice Allowing new EOA to become SmartCOOP member
-    /// @return If execution was successful function will return true
-    function becomeCoopMember()
-        public
-        payable
-        whenNotPaused
-        onlyNewMembers
-        minimumFee
-        returns (bool)
-    {
         s_cooperants[msg.sender].feePayed += msg.value;
         emit NewMember(msg.sender, msg.value);
         return true;
     }
 
     /// @notice Allowing EOA which already pay SmartCOOP membership fee to deposit fruits to SmartCOOP warehouse
+    ///@dev control that function can be called only by SmartCOOP members (depositFruitsToCOOP function)
     /// @param _kg Passing number of kilograms producer would like to deposit to warehouse
     /// @return If execution was successful function will return true
     function depositFruitsToCOOP(uint256 _kg)
         public
         whenNotPaused
-        onlyMembers
         returns (bool)
     {
+        require(
+            s_cooperants[msg.sender].feePayed != 0,
+            "Please become SmartCOOP member"
+        );
         s_cooperants[msg.sender].kg += _kg;
         s_warehouseStock.push(msg.sender);
         coopTokenTransferTo(msg.sender, _kg * (10**18));
@@ -202,7 +182,8 @@ contract SmartCOOP is Pausable, Ownable {
         returns (bool)
     {
         emit COOPTokenTransferConfirmation(receiver, _kg);
-        return coopToken.transfer(receiver, _kg);
+        coopToken.transfer(receiver, _kg);
+        return true;
     }
 
     /// @notice This function is used to withdraw eth from SmartCOOP account

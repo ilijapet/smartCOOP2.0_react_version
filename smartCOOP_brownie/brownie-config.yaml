@@ -69,7 +69,6 @@ wallets:
   from_key: ${PRIVATE_KEY}
 project_structure:
   build: build
-  build: ../smartcoop_react/src/contracts
   contracts: contracts
   interfaces: interfaces
   reports: reports

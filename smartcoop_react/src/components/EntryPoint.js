@@ -42,6 +42,7 @@ const EntryPoint = () => {
       );
     }
   };
+
   const funSetOnOFF = (props) => {
     setOnOFF(props);
   };

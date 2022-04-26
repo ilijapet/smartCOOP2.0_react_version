@@ -1,5 +1,5 @@
 <p align="center">
-<img src =".\smartcoop_react\src\assets\red-2650342_1920.jpg" width="300")
+<img src =".\smartcoop_react\src\assets\red-2650342_1920.jpg" width="300">
 </p>
 
 ## Directory structure

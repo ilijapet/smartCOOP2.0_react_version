@@ -1,22 +1,36 @@
-import Web3 from "web3";
+// import Web3 from "web3";
+import { ethers } from "ethers";
 
 import contract from "../contracts/SmartCOOP.json";
 
 const raspberryPrice = 9;
-const tokenAddress = "0x76932e71f17451e7760ffb9b02d991d73355024C";
+// const tokenAddress = "0x76932e71f17451e7760ffb9b02d991d73355024C";
+const tokenAddress = "0x5367b5Ff8910C4fBef29267514CEF64b52799303";
 const tokenSymbol = "COOP";
 const tokenDecimals = 18;
 const tokenImage =
   "https://ilijapet.github.io/photos/noun_raspberry_4132882_mala.svg";
 
 // Contract address
-const SCaddress = "0x614e8821C0Dc17F16Fdc89C237d5fBd037A041e1";
+// const SCaddress = "0x614e8821C0Dc17F16Fdc89C237d5fBd037A041e1";
+const SCaddress = "0xAccc7f5572483CB30D32E99C42AFcbdC51523e77";
+
+
+let provider = new ethers.providers.Web3Provider(window.ethereum);
+let signer = provider.getSigner();
 
 // Contracts abi
 const ABI = contract.abi;
 
-const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
-const coopContract = new web3.eth.Contract(ABI, SCaddress);
+const coopContract = new ethers.Contract(
+  SCaddress,
+  ABI,
+  signer
+);
+
+
+// const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
+// const coopContract = new web3.eth.Contract(ABI, SCaddress);
 
 // Chain list
 const NetworkID = {

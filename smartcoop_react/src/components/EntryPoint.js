@@ -8,7 +8,7 @@ import Bidder from "./BidderProfile";
 
 /**
  * This function is the entry point of the DApp. It renders the Connect component if the user is not
- * connected to the DApp. Otherwise, it renders the Disconnect component. Also this function redner user, bidder or administraor profile based on eth address connected.
+ * connected to the DApp. Otherwise, it renders the Disconnect component. Also this function redner user, bidder or           * administrator profile based on eth address connected.
  * @returns The component that is being returned is the entry point of the application.
  */
 const EntryPoint = () => {
@@ -38,7 +38,7 @@ const EntryPoint = () => {
 
     if (ethereum.chainId !== "0x2a") {
       alert(
-        "If you would like to use this DApp please set your network   in MetaMask to KOVAN network"
+        "If you would like to use this DApp please set your network in MetaMask to KOVAN network"
       );
     }
   };

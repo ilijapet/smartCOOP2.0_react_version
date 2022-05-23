@@ -78,7 +78,7 @@ contract SmartCOOP is Pausable, Ownable {
             s_cooperants[msg.sender].feePayed == 0,
             "You already pay mebership fee"
         );
-        require(msg.value >= 1000, "Yearly fee is minimum 1000 wei");
+        require(msg.value == 1000, "Yearly fee is minimum 1000 wei");
 
         s_cooperants[msg.sender].feePayed += msg.value;
         emit NewMember(msg.sender, msg.value);
@@ -192,8 +192,8 @@ contract SmartCOOP is Pausable, Ownable {
     function withdraw() public onlyOwner returns (bool) {
         uint256 coopBalance = address(this).balance;
         (bool sent, ) = owner().call{value: address(this).balance}("");
-        emit WithdrawConfirmation(owner(), coopBalance);
         require(sent, "Failed to send Ether");
+        emit WithdrawConfirmation(owner(), coopBalance);
         return true;
     }
 

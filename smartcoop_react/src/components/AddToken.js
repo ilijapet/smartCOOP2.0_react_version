@@ -26,9 +26,9 @@ const AddToken = () => {
         },
       });
       if (wasAdded) {
-        console.log("Thanks for your interest!");
+        console.log("You added new token type to your MetaMask wallet");
       } else {
-        console.log("Your loss!");
+        console.log("You did't add your new token to the wallet.");
       }
     } catch (error) {
       console.log(error);

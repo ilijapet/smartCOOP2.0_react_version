@@ -15,10 +15,11 @@ const Connect = ({
   bidder,
 }) => {
   const selection = async (props) => {
-    let user_balance = await coopContract.methods
-      .getUserAccountBalance(props)
-      .call();
-    if (user_balance[0] !== "0") {
+    // let user_balance = await coopContract.methods
+    //   .getUserAccountBalance(props)
+    //   .call();
+    let user_balance = await coopContract.getUserAccountBalance(props);  
+    if (user_balance[0]["_hex"] !== "0x00") {
       funSetCooperant(!cooperant);
     } else if (props === "0x273f4fca831a7e154f8f979e1b06f4491eb508b6") {
       funSetAdmin(!admin);

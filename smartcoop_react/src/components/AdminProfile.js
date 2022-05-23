@@ -33,59 +33,21 @@ const Admin = () => {
   const withdraw = async () => {
     const accounts = await ethereum.request({ method: "eth_accounts" });
     const account = accounts[0];
-
-    var done = coopContract.methods
-      .withdraw()
-      .send({ from: account }, async function (error, transactionHash) {
-        if (error) {
-          console.log(error);
-        } else {
-          await progressButton(done, setNewWidth);
-          setButtonText("Withdraw done");
-          await sleep(4000);
-          setNewWidth("0%");
-        }
-      });
+    var done = coopContract.withdraw();
   };
 
   const pause = async () => {
     const accounts = await ethereum.request({ method: "eth_accounts" });
     const account = accounts[0];
-
-    var done = coopContract.methods
-      .pause()
-      .send({ from: account }, async function (error, transactionHash) {
-        if (error) {
-          console.log(error);
-        } else {
-          await progressButton(done, setNewWidthPause);
-          setPauseButtonText("Paused");
-          await sleep(4000);
-          setNewWidth("0%");
-          setPlayButtonText("Play");
-        }
-      });
+    var done = coopContract.pause()
   };
 
   const play = async () => {
     const accounts = await ethereum.request({ method: "eth_accounts" });
     const account = accounts[0];
+    var done = coopContract.unpause()
 
-    var done = coopContract.methods
-      .unpause()
-      .send({ from: account }, async function (error, transactionHash) {
-        if (error) {
-          console.log(error);
-        } else {
-          await progressButton(done, setNewWidthPlay);
-          setPlayButtonText("Contract is again on");
-          await sleep(4000);
-          setNewWidth("0%");
-          setPauseButtonText("Pause");
-        }
-      });
-  };
-
+  }
   useEffect(() => {
     getAccount();
   });

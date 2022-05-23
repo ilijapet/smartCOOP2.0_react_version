@@ -17,15 +17,15 @@ DECIMALS = 18
 INITIAL_VALUE = Web3.toWei(2000, "ether")
 
 
-# def get_provider():
-#     if network.show_active() == "development":
-#         return Web3(Web3.HTTPProvider("http://127.0.0.1:8545"))
-#     else:
-#         return Web3(
-#             Web3.HTTPProvider(
-#                 endpoint_uri="https://kovan.infura.io/v3/d95759f532d54ae58967e92d9ccccf95"
-#             )
-#         )
+def get_provider():
+    if network.show_active() == "development":
+        return Web3(Web3.HTTPProvider("http://127.0.0.1:8545"))
+    else:
+        return Web3(
+            Web3.HTTPProvider(
+                endpoint_uri="https://kovan.infura.io/v3/d95759f532d54ae58967e92d9ccccf95"
+            )
+        )
 
 
 def get_account():

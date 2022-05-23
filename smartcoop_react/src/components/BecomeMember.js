@@ -6,7 +6,7 @@ import {
 } from "../helpers/housekeeping";
 
 /**
- * It creates a button that will provide user option to become a SmartCOOP member.
+ * It creates a button which provides user option to become a SmartCOOP member.
  * @returns A button with a progress bar.
  */
 const BecomeMember = () => {
